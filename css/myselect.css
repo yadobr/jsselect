@@ -1,0 +1,26 @@
+.myselect {
+  cursor: default;
+}
+.myselect > p {
+  margin: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  -ms-user-select: none;
+}
+.myselect > ul {
+  display: none;
+  line-height: 0;
+  margin: 0;
+  padding: 0;
+}
+.myselect > ul > li {
+  display: block;
+  list-style: none;
+  line-height: normal;
+}
+.myselect-opened > ul {
+  display: block;
+  position: absolute;
+}

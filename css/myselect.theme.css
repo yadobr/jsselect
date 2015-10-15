@@ -1,0 +1,28 @@
+.myselect {
+  border: 2px solid #1d1d1d;
+  font-family: Segoe UI, sans-serif;
+  font-size: 14px;
+  background: #fff;
+}
+.myselect:hover {
+  border-color: #2d89ef;
+}
+.myselect > p {
+  padding: 5px 10px 5px 10px;
+}
+.myselect > ul {
+  background: #fff;
+  border: 2px solid #1d1d1d;
+}
+.myselect > ul > li {
+  padding: 7px 10px 7px 10px;
+}
+.myselect > ul > li:hover {
+  background: #eff4ff;
+}
+.myselect-opened {
+  border-color: #2d89ef;
+}
+.myselect-opened > ul {
+  border-color: #2d89ef;
+}

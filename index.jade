@@ -1,0 +1,20 @@
+doctype html
+html
+   head
+      title
+      meta(charset="utf-8")
+      link(href="css/myselect.css" rel="styleSheet")
+      link(href="css/myselect.theme.css" rel="styleSheet")
+   body
+      select(id="sel")
+         option One
+         option(selected) Two1111111111222222222222222222222
+         option(value="three") 3
+      br
+      br
+      .myselect(data-source="#sel")
+      |aaaaa
+
+      script(src="js/jquery.min.js")
+      script(src="js/myselect.js")
+      script $('.myselect').myselect({debug: true});
