@@ -1,4 +1,5 @@
 .myselect {
+  display: block;
   cursor: default;
 }
 .myselect > p {
@@ -8,6 +9,9 @@
   -moz-user-select: none;
   -o-user-select: none;
   -ms-user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .myselect > ul {
   display: none;

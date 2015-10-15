@@ -22,7 +22,7 @@
       <envs />
     </TaskOptions>
     <TaskOptions isEnabled="true">
-      <option name="arguments" value="$FileName$ -p -w" />
+      <option name="arguments" value="$FileName$ --pretty -W" />
       <option name="checkSyntaxErrors" value="true" />
       <option name="description" value="Compiles .jade files into .html files" />
       <option name="exitCodeBehavior" value="ERROR" />

@@ -1,59 +1,67 @@
 $.fn.myselect = function(prop){
-    var self = this,
+    var self = $('<div class="myselect">'),
         source,
         header,
         list,
         isOnRemove = false,
-        isOnSelect = false;
+        isOnChange = false;
 
     if(this.length != 0){
-        source = $(this.attr('data-source'));
+        source = this;
+        header = $('<p>').appendTo(self);
+        list = $('<ul>').appendTo(self);
 
-        if(source.length != 0){
-            header = $('<p>').appendTo(this);
-            list = $('<ul>').appendTo(this);
+        // BUILD A LIST
+        // Append container
+        source.after(self);
 
-            // BUILD A LIST
-            // Find selected by default option in source and add to .myselect
-            header.html( findSelected().html() );
+        // Find selected by default option in source and add to .myselect
+        header
+            .html( findSelected().html() )
+            .attr('title', findSelected().html());
 
-            // Find usual options
-            findUsual().each(appendUsual);
+        // Find usual options
+        findUsual().each(appendUsual);
 
-            // SET PROPERTIES
-            // If overwritten
-            if(typeof prop == 'object'){
+        // SET PROPERTIES
+        // If overwritten
+        if(typeof prop == 'object'){
 
-                // Debug
-                prop.debug == true ? source.show() : source.hide();
+            // Debug
+            prop.debug == true ? source.show() : source.hide();
 
-                // Width
-                prop.width ? this.css('width', prop.width) : this.css('width', list.width());
+            // Width
+            prop.width ? self.css('width', prop.width) : self.css('width', list.width());
 
-                // Oncreate
-                typeof prop.oncreate == 'function' && prop.oncreate(source, self, header, list);
+            // Oncreate
+            typeof prop.oncreate == 'function' && prop.oncreate(source, self, header, list);
 
-                // Onselect
-                typeof prop.onselect == 'function' && (isOnSelect = true);
+            // onchange
+            typeof prop.onchange == 'function' && (isOnChange = true);
 
-                // Onremove
-                typeof prop.onremove == 'function' && (isOnRemove = true);
-            }
-
-            // By dedault
-            else{
-
-                // Debug
-                source.hide();
-
-                // Width
-                this.css('width', list.width())
-            }
-
-            // SET EVENTS
-            header.click(headerClick);
-            list.click(listClick);
+            // Onremove
+            typeof prop.onremove == 'function' && (isOnRemove = true);
         }
+
+        // By dedault
+        else{
+
+            // Debug
+            source.hide();
+
+            // Width
+            self.css('width', list.width())
+        }
+
+        // SET EVENTS
+        // Set .myselect events
+        header.click(headerClick);
+        list.click(listClick);
+
+        // Set source select events
+        source.change(onSourceChange);
+        source.focus(onSourceFocus);
+        source.blur(onSourceBlur);
     }
 
     // Build a list functions implementation
@@ -66,8 +74,6 @@ $.fn.myselect = function(prop){
     function appendUsual(i, elem){
         $('<li>').html( $(elem).html()).appendTo( list );
     }
-
-    // Set properties functions implementation
 
     // Set events functions implementation
     function headerClick(e){
@@ -106,7 +112,6 @@ $.fn.myselect = function(prop){
             return false;
         }
     }
-
     function listClick(e){
         var elm = $(e.target), // Clicked li
             ind = elm.index(), // Clicked li position in ul
@@ -118,10 +123,23 @@ $.fn.myselect = function(prop){
         // Add selected attribute to option in source select
         opt.prop('selected', true);
 
-        isOnSelect && prop.onselect(e, elm, ind, opt, source, self, header, list);
+        isOnChange && prop.onchange(e, elm, ind, opt, source, self, header, list);
+        source.change();
 
         // Hide list
         self.removeClass('myselect-opened');
         window.removeEventListener( 'click', hideList, true );
+    }
+    function onSourceChange(e){
+        var elm = source.find(':selected'), // Selected option in source select
+            ind = elm.index();              // Position of selected option in source select
+
+        header.html( $(list.children()[ind]).html() );
+    }
+    function onSourceFocus(e){
+        self.addClass('myselect-focused');
+    }
+    function onSourceBlur(e){
+        self.removeClass('myselect-focused');
     }
 }

@@ -26,3 +26,10 @@
 .myselect-opened > ul {
   border-color: #2d89ef;
 }
+.myselect-focused {
+  box-shadow: 0 0 5px #2b5797;
+  border-color: #2d89ef;
+}
+input[type="radio"]:focus + label.myselect {
+  border-color: #f00;
+}
