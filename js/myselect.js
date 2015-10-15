@@ -1,99 +1,142 @@
 $.fn.myselect = function(prop){
-    var self = $('<div class="myselect">'),
-        source,
-        header,
-        list,
-        isOnRemove = false,
-        isOnChange = false;
+    //region VARIABLES
+    var newSelect = $('<div class="myselect">'),
+        oldSelect = this,
+        header = $('<p>'),
+        list = $('<ul>'),
+        isOnCreate = false,
+        isOnFocus  = false,
+        isOnOpen   = false,
+        isOnChange = false,
+        isOnBlur   = false,
+        isOnClose  = false;
+    //endregion
 
-    if(this.length != 0){
-        source = this;
-        header = $('<p>').appendTo(self);
-        list = $('<ul>').appendTo(self);
+    if(oldSelect.length != 0){
 
-        // BUILD A LIST
+        //region CREATE NEW SELECT
         // Append container
-        source.after(self);
+        newSelect.insertAfter(oldSelect);
 
-        // Find selected by default option in source and add to .myselect
-        header
-            .html( findSelected().html() )
-            .attr('title', findSelected().html());
+        // Append elements
+        header.appendTo(newSelect);
+        list.appendTo(newSelect);
 
-        // Find usual options
-        findUsual().each(appendUsual);
+        // Find selected by default option in oldSelect and add to newSelect
+        setHeader();
 
-        // SET PROPERTIES
+        // Find other <option> and add to list
+        setList();
+        //endregion
+
+        //region SET PROPERTIES
         // If overwritten
         if(typeof prop == 'object'){
 
             // Debug
-            prop.debug == true ? source.show() : source.hide();
+            prop.debug == true ? oldSelect.show() : oldSelect.hide();
 
             // Width
-            prop.width ? self.css('width', prop.width) : self.css('width', list.width());
+            prop.width ? newSelect.css('width', prop.width) : newSelect.css('width', list.width());
 
-            // Oncreate
-            typeof prop.oncreate == 'function' && prop.oncreate(source, self, header, list);
+            // oncreate
+            typeof prop.oncreate == 'function' && (isOnCreate = true);
+
+            // onfocus
+            typeof prop.onfocus == 'function' && (isOnFocus = true);
+
+            // onopen
+            typeof prop.onopen == 'function' && (isOnOpen = true);
 
             // onchange
             typeof prop.onchange == 'function' && (isOnChange = true);
 
+            // onblur
+            typeof prop.onblur == 'function' && (isOnBlur = true);
+
             // Onremove
-            typeof prop.onremove == 'function' && (isOnRemove = true);
+            typeof prop.onclose == 'function' && (isOnClose = true);
         }
 
         // By dedault
         else{
 
             // Debug
-            source.hide();
+            oldSelect.hide();
 
             // Width
-            self.css('width', list.width())
+            newSelect.css('width', list.width())
         }
+        //endregion
 
-        // SET EVENTS
-        // Set .myselect events
-        header.click(headerClick);
-        list.click(listClick);
+        //region PRIVATE EVENTS
+        // Set newSelect events
+        header.click(open);
+        list.click(change);
 
-        // Set source select events
-        source.change(onSourceChange);
-        source.focus(onSourceFocus);
-        source.blur(onSourceBlur);
+        // Set select events
+        oldSelect.change(onselectChange);
+        oldSelect.focus(onselectFocus);
+        oldSelect.blur(onselectBlur);
+        //endregion
+
+        isOnCreate && prop.oncreate(oldSelect, newSelect, header, list);
     }
 
-    // Build a list functions implementation
-    function findSelected(){
-        return source.find('> option:selected');
+    function setHeader(){
+        var html = oldSelect.find('> option:selected').html()
+        header
+            .html( html )
+            .attr('title', html);
     }
-    function findUsual(){
-        return source.find('option');
+    function setList(){
+        oldSelect.find('option').each(function(){
+            $('<li>').html( $(this).html()).appendTo( list );
+        });
     }
-    function appendUsual(i, elem){
-        $('<li>').html( $(elem).html()).appendTo( list );
-    }
-
-    // Set events functions implementation
-    function headerClick(e){
+    function open(e){
         var x,
             y;
 
-        if(!self.hasClass('myselect-opened')) {
-            self.addClass('myselect-opened');
-            x = self.offset().left;
-            y = self.position().top + self.outerHeight() - parseInt(self.css('border-top-width'), 10);
+        if(!newSelect.hasClass('myselect-opened')) {
+            newSelect
+                .addClass('myselect-opened')
+                .addClass('myselect-focused');
+
+            x = newSelect.offset().left;
+            y = newSelect.position().top + newSelect.outerHeight() - parseInt(newSelect.css('border-top-width'), 10);
 
             list.css({'left': x, 'top': y});
 
-            window.addEventListener('click', hideList, true);
+            isOnOpen && prop.onopen(e, oldSelect, newSelect, header, list);
+
+            window.addEventListener('click', close, true);
         } else{
-            self.removeClass('myselect-opened');
-            window.removeEventListener( 'click', hideList, true );
+            newSelect.removeClass('myselect-opened');
+            window.removeEventListener( 'click', close, true );
         }
     }
-    function hideList(e){
+    function change(e){
+        var elm = $(e.target), // Clicked li
+            ind = elm.index(), // Clicked li position in ul
+            opt = $(oldSelect.children()[ind]); // select option
+
+        // li text to header
+        header.html( elm.html() );
+
+        // Add selected attribute to option in select
+        opt.prop('selected', true);
+
+        isOnChange && prop.onchange(e, elm, ind, opt, oldSelect, newSelect, header, list);
+        oldSelect.change();
+        isOnClose && prop.onclose(oldSelect, newSelect, header, list);
+
+        // Hide list
+        newSelect.removeClass('myselect-opened');
+        window.removeEventListener( 'click', close, true );
+        window.addEventListener( 'click', removeFocus, true );
+    }
+    function close(e){
         var child = false;
 
         list.find('*').each(function(){
@@ -104,42 +147,35 @@ $.fn.myselect = function(prop){
         });
 
         if( !child ){
-            self.removeClass('myselect-opened');
-            window.removeEventListener( 'click', hideList, true );
-            isOnRemove && prop.onremove(source, self, header, list);
+            newSelect
+                .removeClass('myselect-opened')
+                .removeClass('myselect-focused');
+
+            window.removeEventListener( 'click', close, true );
+            isOnClose && prop.onclose(oldSelect, newSelect, header, list);
 
             e.stopPropagation();
             return false;
         }
     }
-    function listClick(e){
-        var elm = $(e.target), // Clicked li
-            ind = elm.index(), // Clicked li position in ul
-            opt = $(source.children()[ind]); // Source select option
-
-        // li text to header
-        header.html( elm.html() );
-
-        // Add selected attribute to option in source select
-        opt.prop('selected', true);
-
-        isOnChange && prop.onchange(e, elm, ind, opt, source, self, header, list);
-        source.change();
-
-        // Hide list
-        self.removeClass('myselect-opened');
-        window.removeEventListener( 'click', hideList, true );
+    function removeFocus(e){
+        newSelect.removeClass('myselect-focused');
+        window.removeEventListener( 'click', removeFocus, true );
     }
-    function onSourceChange(e){
-        var elm = source.find(':selected'), // Selected option in source select
-            ind = elm.index();              // Position of selected option in source select
+
+    function onselectChange(e){
+        var elm = oldSelect.find(':selected'), // Selected option in select
+            ind = elm.index();                 // Position of selected option in select
 
         header.html( $(list.children()[ind]).html() );
+        isOnChange && prop.onchange(e, elm, ind, oldSelect, newSelect, header, list);
     }
-    function onSourceFocus(e){
-        self.addClass('myselect-focused');
+    function onselectFocus(e){
+        newSelect.addClass('myselect-focused');
+        isOnFocus && prop.onfocus(e);
     }
-    function onSourceBlur(e){
-        self.removeClass('myselect-focused');
+    function onselectBlur(e){
+        newSelect.removeClass('myselect-focused');
+        isOnBlur && prop.onblur(e);
     }
 }

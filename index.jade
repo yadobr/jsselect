@@ -10,8 +10,16 @@ html
          option One
          option(selected) Two1111111111222222222222222222222
          option(value="three") 3
-      |aaaaawwaa
 
       script(src="js/jquery.min.js")
       script(src="js/myselect.js")
-      script $('#sel').myselect({debug: true});
+      script.
+         $('#sel').myselect({
+            debug: true,
+            oncreate: function(){ console.log('Create') },
+            onfocus: function(){ console.log('Focus') },
+            onopen: function(){ console.log('Open') },
+            onchange: function(){ console.log('Change') },
+            onblur: function(){ console.log('Blur') },
+            onclose: function(){ console.log('Close') }
+         });
