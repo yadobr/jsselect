@@ -1,0 +1,34 @@
+$border-color = #1d1d1d
+$border-color-hover = #2d89ef
+$border-color-disabled = #eff4ff
+
+.jsselect
+  border: 2px solid $border-color
+  font-family Segoe UI, sans-serif
+  font-size 14px
+  background #fff
+  &:hover
+    border-color $border-color-hover
+  > p
+    padding 5px 10px 5px 10px
+  > ul
+    background #fff
+    border: 2px solid $border-color
+    > li
+      padding 7px 10px 7px 10px
+    > li:hover
+      background #eff4ff
+
+.jsselect-disabled
+  border-color $border-color-disabled
+  &:hover
+    border-color $border-color-disabled
+
+.jsselect-opened
+  border-color $border-color-hover
+  > ul
+    border-color $border-color-hover
+
+.jsselect-focused
+  box-shadow 0 0 5px #2b5797
+  border-color $border-color-hover

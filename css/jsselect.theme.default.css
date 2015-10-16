@@ -1,0 +1,38 @@
+.jsselect {
+  border: 2px solid #1d1d1d;
+  font-family: Segoe UI, sans-serif;
+  font-size: 14px;
+  background: #fff;
+}
+.jsselect:hover {
+  border-color: #2d89ef;
+}
+.jsselect > p {
+  padding: 5px 10px 5px 10px;
+}
+.jsselect > ul {
+  background: #fff;
+  border: 2px solid #1d1d1d;
+}
+.jsselect > ul > li {
+  padding: 7px 10px 7px 10px;
+}
+.jsselect > ul > li:hover {
+  background: #eff4ff;
+}
+.jsselect-disabled {
+  border-color: #eff4ff;
+}
+.jsselect-disabled:hover {
+  border-color: #eff4ff;
+}
+.jsselect-opened {
+  border-color: #2d89ef;
+}
+.jsselect-opened > ul {
+  border-color: #2d89ef;
+}
+.jsselect-focused {
+  box-shadow: 0 0 5px #2b5797;
+  border-color: #2d89ef;
+}

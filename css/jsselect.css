@@ -1,0 +1,43 @@
+.jsselect {
+  display: block;
+  cursor: default;
+}
+.jsselect > input[type="checkbox"] {
+  position: relative;
+  display: inherit;
+  left: 0;
+  top: 0;
+  margin: 0;
+  width: 0px;
+  height: 0px;
+  opacity: 0;
+}
+.jsselect > p {
+  margin: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  -ms-user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.jsselect > ul {
+  display: none;
+  line-height: 0;
+  margin: 0;
+  padding: 0;
+}
+.jsselect > ul > li {
+  display: block;
+  list-style: none;
+  line-height: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.jsselect-opened > ul {
+  display: block;
+  position: absolute;
+}

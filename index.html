@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title></title>
+    <title>jsselect</title>
     <meta charset="utf-8">
-    <link href="css/myselect.css" rel="styleSheet">
-    <link href="css/myselect.theme.css" rel="styleSheet">
+    <link href="css/jsselect.css" rel="styleSheet">
+    <link href="css/jsselect.theme.default.css" rel="styleSheet">
   </head>
   <body>
     <select id="sel">
@@ -13,10 +13,10 @@
       <option>Three</option>
     </select>
     <script src="js/jquery.min.js"></script>
-    <script src="js/myselect.js"></script>
+    <script src="js/jsselect.js"></script>
     <script>
-      $('#sel').myselect({
-         debug: true,
+      $('#sel').jsselect({
+         debug: false,
          oncreate: function(){ console.log('Create') },
          onfocus: function(){ console.log('Focus') },
          onopen: function(){ console.log('Open') },
@@ -24,7 +24,6 @@
          onblur: function(){ console.log('Blur') },
          onclose: function(){ console.log('Close') }
       });
-      //$.fn.myselect.refresh('#sel');
     </script>
   </body>
 </html>

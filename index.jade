@@ -1,10 +1,10 @@
 doctype html
 html
    head
-      title
+      title jsselect
       meta(charset="utf-8")
-      link(href="css/myselect.css" rel="styleSheet")
-      link(href="css/myselect.theme.css" rel="styleSheet")
+      link(href="css/jsselect.css" rel="styleSheet")
+      link(href="css/jsselect.theme.default.css" rel="styleSheet")
    body
       select(id="sel")
          option One
@@ -12,10 +12,10 @@ html
          option Three
 
       script(src="js/jquery.min.js")
-      script(src="js/myselect.js")
+      script(src="js/jsselect.js")
       script.
-         $('#sel').myselect({
-            debug: true,
+         $('#sel').jsselect({
+            debug: false,
             oncreate: function(){ console.log('Create') },
             onfocus: function(){ console.log('Focus') },
             onopen: function(){ console.log('Open') },
@@ -23,4 +23,3 @@ html
             onblur: function(){ console.log('Blur') },
             onclose: function(){ console.log('Close') }
          });
-         //$.fn.myselect.refresh('#sel');
