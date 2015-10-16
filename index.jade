@@ -8,15 +8,14 @@ html
    body
       select(id="sel")
          option One
-         option(selected) Two1111111111222222222222222222222Two1111111111222222222222222222222Two1111111111222222222222222222222
-         option(value="three") 3
+         option(selected) Two
+         option Three
 
       script(src="js/jquery.min.js")
       script(src="js/myselect.js")
       script.
          $('#sel').myselect({
             debug: true,
-            width: '200px',
             oncreate: function(){ console.log('Create') },
             onfocus: function(){ console.log('Focus') },
             onopen: function(){ console.log('Open') },
