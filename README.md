@@ -3,13 +3,13 @@ jsselect
 
 jsselect.js is a JQuery plugin for creating styleable select elements. Features:
 
-	0. Auto width
-	0. Themes
-	0. Tabindex and :focus support
-	0. Disabled attr support
-	0. Cut off long text if width set manualy. And tooltip with full text
-	0. Select manualy refresh: $.fn.jsselect.refresh('#sel')
-	0. In future: json data source, multiselect, arrow keys navigation etc.
+	1. Auto width
+	2. Themes
+	3. Tabindex and :focus support
+	4. Disabled attr support
+	5. Cut off long text if width set manualy. And tooltip with full text
+	6. Select manualy refresh: $.fn.jsselect.refresh('#sel')
+	7. In future: json data source, multiselect, arrow keys navigation etc.
 
 Usage
 -------
