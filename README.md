@@ -1,8 +1,8 @@
 jsselect
 ========
 
-jsselect.js is a JQuery plugin for creating styleable select elements.
-Features:
+jsselect.js is a JQuery plugin for creating styleable select elements. Features:
+
 	0. Auto width
 	0. Themes
 	0. Tabindex and :focus support
