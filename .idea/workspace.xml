@@ -25,8 +25,8 @@
           <file leaf-file-name="index.jade" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/index.jade">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="1.7455357">
-                  <caret line="23" column="55" selection-start-line="23" selection-start-column="55" selection-end-line="23" selection-end-column="55" />
+                <state vertical-scroll-proportion="0.84821427">
+                  <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="41" />
                   <folding />
                 </state>
               </provider>
@@ -36,7 +36,7 @@
             <entry file="file://$PROJECT_DIR$/css/myselect.styl">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="0" column="9" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
+                  <caret line="22" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
                   <folding />
                 </state>
               </provider>
@@ -59,19 +59,16 @@
           <file leaf-file-name="myselect.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/js/myselect.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.8827893">
-                  <caret line="179" column="5" selection-start-line="179" selection-start-column="5" selection-end-line="179" selection-end-column="5" />
+                <state vertical-scroll-proportion="0.8486647">
+                  <caret line="207" column="34" selection-start-line="207" selection-start-column="34" selection-end-line="207" selection-end-column="34" />
                   <folding>
                     <element signature="e#36#54#0" expanded="false" />
                     <element signature="e#408#434#0" expanded="false" />
-                    <element signature="e#798#821#0" expanded="false" />
-                    <element signature="e#1867#1890#0" expanded="false" />
-                    <element signature="e#2254#2398#0" expanded="false" />
-                    <element signature="e#2421#2552#0" expanded="false" />
-                    <element signature="e#2573#3265#0" expanded="false" />
-                    <element signature="e#3288#4007#0" expanded="false" />
-                    <element signature="e#4029#4577#0" expanded="false" />
-                    <element signature="e#4605#4729#0" expanded="false" />
+                    <element signature="e#883#1703#0" expanded="false" />
+                    <element signature="e#2697#3389#0" expanded="false" />
+                    <element signature="e#3412#4040#0" expanded="false" />
+                    <element signature="e#4062#4610#0" expanded="false" />
+                    <element signature="e#4638#4762#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -93,8 +90,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/style.styl" />
-        <option value="$PROJECT_DIR$/css/myselect.styl" />
         <option value="$PROJECT_DIR$/css/myselect.theme.styl" />
+        <option value="$PROJECT_DIR$/css/myselect.styl" />
         <option value="$PROJECT_DIR$/index.jade" />
         <option value="$PROJECT_DIR$/js/myselect.js" />
       </list>
@@ -261,7 +258,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -296,14 +295,11 @@
           <folding>
             <element signature="e#36#54#0" expanded="false" />
             <element signature="e#408#434#0" expanded="false" />
-            <element signature="e#798#821#0" expanded="false" />
-            <element signature="e#1867#1890#0" expanded="false" />
-            <element signature="e#2254#2398#0" expanded="false" />
-            <element signature="e#2421#2552#0" expanded="false" />
-            <element signature="e#2573#3265#0" expanded="false" />
-            <element signature="e#3288#4007#0" expanded="false" />
-            <element signature="e#4029#4577#0" expanded="false" />
-            <element signature="e#4605#4729#0" expanded="false" />
+            <element signature="e#883#1703#0" expanded="false" />
+            <element signature="e#2697#3389#0" expanded="false" />
+            <element signature="e#3412#4040#0" expanded="false" />
+            <element signature="e#4062#4610#0" expanded="false" />
+            <element signature="e#4638#4762#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -316,14 +312,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/myselect.styl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="9" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/myselect.theme.styl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -332,30 +320,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.jade">
+    <entry file="file://$PROJECT_DIR$/css/myselect.styl">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.7455357">
-          <caret line="23" column="55" selection-start-line="23" selection-start-column="55" selection-end-line="23" selection-end-column="55" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/myselect.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8827893">
-          <caret line="179" column="5" selection-start-line="179" selection-start-column="5" selection-end-line="179" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.8486647">
+          <caret line="207" column="34" selection-start-line="207" selection-start-column="34" selection-end-line="207" selection-end-column="34" />
           <folding>
             <element signature="e#36#54#0" expanded="false" />
             <element signature="e#408#434#0" expanded="false" />
-            <element signature="e#798#821#0" expanded="false" />
-            <element signature="e#1867#1890#0" expanded="false" />
-            <element signature="e#2254#2398#0" expanded="false" />
-            <element signature="e#2421#2552#0" expanded="false" />
-            <element signature="e#2573#3265#0" expanded="false" />
-            <element signature="e#3288#4007#0" expanded="false" />
-            <element signature="e#4029#4577#0" expanded="false" />
-            <element signature="e#4605#4729#0" expanded="false" />
+            <element signature="e#883#1703#0" expanded="false" />
+            <element signature="e#2697#3389#0" expanded="false" />
+            <element signature="e#3412#4040#0" expanded="false" />
+            <element signature="e#4062#4610#0" expanded="false" />
+            <element signature="e#4638#4762#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.84821427">
+          <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -37,7 +37,7 @@ $.fn.myselect = function(prop){
             prop.debug == true ? oldSelect.show() : oldSelect.hide();
 
             // Width
-            prop.width ? newSelect.css('width', prop.width) : newSelect.css('width', list.width());
+            prop.width ? (newSelect.css('width', prop.width) && list.css('width', prop.width) ) : newSelect.css('width', list.width());
 
             // oncreate
             typeof prop.oncreate == 'function' && (isOnCreate = true);
@@ -75,9 +75,9 @@ $.fn.myselect = function(prop){
         list.click(change);
 
         // Set select events
-        oldSelect.change(onselectChange);
-        oldSelect.focus(onselectFocus);
-        oldSelect.blur(onselectBlur);
+        oldSelect.change(onOldSelectChange);
+        //oldSelect.focus(onselectFocus);
+        //oldSelect.blur(onselectBlur);
         //endregion
 
         isOnCreate && prop.oncreate(oldSelect, newSelect, header, list);
@@ -91,7 +91,10 @@ $.fn.myselect = function(prop){
     }
     function setList(){
         oldSelect.find('option').each(function(){
-            $('<li>').html( $(this).html()).appendTo( list );
+            $('<li>')
+                .html( $(this).html())
+                .attr('title', $(this).html())
+                .appendTo( list );
         });
     }
     function open(e){
@@ -127,7 +130,6 @@ $.fn.myselect = function(prop){
         // Add selected attribute to option in select
         opt.prop('selected', true);
 
-        isOnChange && prop.onchange(e, elm, ind, opt, oldSelect, newSelect, header, list);
         oldSelect.change();
         isOnClose && prop.onclose(oldSelect, newSelect, header, list);
 
@@ -163,7 +165,7 @@ $.fn.myselect = function(prop){
         window.removeEventListener( 'click', removeFocus, true );
     }
 
-    function onselectChange(e){
+    function onOldSelectChange(e){
         var elm = oldSelect.find(':selected'), // Selected option in select
             ind = elm.index();                 // Position of selected option in select
 
@@ -177,5 +179,33 @@ $.fn.myselect = function(prop){
     function onselectBlur(e){
         newSelect.removeClass('myselect-focused');
         isOnBlur && prop.onblur(e);
+    }
+}
+
+$.fn.myselect.refresh = function(selector){
+    var oldSelect = $(selector),
+        newSelect = oldSelect.next(),
+        header,
+        list;
+
+    if(oldSelect.length != 0 && newSelect.length != 0){
+        var html;
+
+        // Refresh header
+        header = newSelect.find('> p');
+        html = oldSelect.find('> option:selected').html()
+        header
+            .html( html )
+            .attr('title', html);
+
+        // Refresh list
+        list = newSelect.find('> ul');
+        list.html('');
+        oldSelect.find('option').each(function(){
+            $('<li>')
+                .html( $(this).html())
+                .attr('title', $(this).html())
+                .appendTo( list );
+        });
     }
 }
