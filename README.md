@@ -1,7 +1,11 @@
 jsselect
 ========
 
-jsselect.js is a JQuery plugin for creating styleable select elements. Features:
+jsselect.js is a JQuery plugin for creating styleable select elements.
+
+[DEMO](https://yadobr.github.io/jsselect/)
+
+Features:
 
 	1. Auto width
 	2. Themes
@@ -69,9 +73,9 @@ Example
   </body>
 </html>
 ```
-	
+
 Options
--------	
+-------
 * `debug` values: `true|false` -- If `true` display source select element
 * `width` values: `pixels|percentage` -- Set jsselect width. If the property is not set then width = auto by default
 * `tabindex` values: `number` -- Set tabindex attribute
